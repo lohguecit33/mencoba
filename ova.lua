@@ -233,30 +233,32 @@ elseif game.PlaceId == 4442272183 then
 elseif game.PlaceId == 7449423635 then
     World3 = true
 end
+-- Function to teleport to the Sky Bandit location
+local function TeleportToSkyBandit()
+    local skyBanditLocation = CFrame.new(-4953.20703125, 295.74420166015625, -2899.22900390625) -- Position of Sky Bandit
+    game.Players.LocalPlayer.Character.HumanoidRootPart.CFrame = skyBanditLocation
+end
 local function CheckQuest() 
     MyLevel = game:GetService("Players").LocalPlayer.Data.Level.Value
     if World1 then
-        -- Menyerang Sky Bandit dari level 1 hingga 120
         if MyLevel >= 1 and MyLevel <= 120 then
+            -- Teleport to Sky Bandit location
+            TeleportToSkyBandit()
+    
+            -- Set the target monster to Sky Bandit
             Mon = "Sky Bandit"
-            NameMon = "Sky Bandit"
-            CFrameMon = CFrame.new(-4953.20703125, 295.74420166015625, -2899.22900390625)
-            
-            -- Logika untuk menyerang Sky Bandit
-            if _G.AutoFarm then
-                for _, enemy in pairs(game:GetService("Workspace").Enemies:GetChildren()) do
-                    if enemy.Name == Mon and enemy:FindFirstChild("Humanoid") and enemy.Humanoid.Health > 0 then
-                        repeat
-                            EquipWeapon(_G.SelectWeapon)
-                            AutoHaki()
-                            ATween(enemy.HumanoidRootPart.CFrame * Pos)
-                            game:GetService'VirtualUser ':CaptureController()
-                            game:GetService'VirtualUser ':Button1Down(Vector2.new(1280, 672))
-                        until enemy.Humanoid.Health <= 0 or not _G.AutoFarm
-                    end
-                end
-            end
-        -- Setelah level 120, lanjutkan dengan logika quest sesuai level
+    
+            -- Attack the Sky Bandit
+            for _, enemy in pairs(game:GetService("Workspace").Enemies:GetChildren()) do
+                if enemy.Name == Mon and enemy:FindFirstChild("Humanoid") and enemy.Humanoid.Health > 0 then
+                    repeat
+                        task.wait()
+                        EquipWeapon(_G.SelectWeapon) -- Equip the selected weapon
+                        AutoHaki() -- Activate Haki
+                        ATween(enemy.HumanoidRootPart.CFrame * Pos) -- Move towards the enemy
+                        game:GetService'VirtualUser ':CaptureController()
+                        game:GetService'VirtualUser ':Button1Down(Vector2.new(1280, 672)) -- Attack
+                    until MyLevel >= 120 or enemy.Humanoid.Health <= 0
         elseif MyLevel == 120 or MyLevel <= 149 then
             Mon = "Chief Petty Officer"
             LevelQuest = 1
@@ -892,7 +894,14 @@ function Hop()
     end
     Teleport()
 end       
-
+		
+-- Main loop to continuously check the player's level and attack
+spawn(function()
+    while wait() do
+        CheckQuest() -- Call the function to check quests and attack
+    end
+end)
+		
 function UpdateIslandESP() 
     for i,v in pairs(game:GetService("Workspace")["_WorldOrigin"].Locations:GetChildren()) do
         pcall(function()
