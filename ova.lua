@@ -95,11 +95,11 @@ local function updateTime()
 
     -- แสดงเวลาในรูปแบบ "1 วินาที", "1 นาที", "1 ชั่วโมง"
     if hours > 0 then
-        timeLabel.Text = string.format("Time: %d ชั่วโมง %d นาที", hours, minutes)
+        timeLabel.Text = string.format("Time: %d hour %d min", hours, minutes)
     elseif minutes > 0 then
-        timeLabel.Text = string.format("Time: %d นาที %d วินาที", minutes, seconds)
+        timeLabel.Text = string.format("Time: %d min %d sec", minutes, seconds)
     else
-        timeLabel.Text = string.format("Time: %d วินาที", seconds)
+        timeLabel.Text = string.format("Time: %d sec", seconds)
     end
 end
 
