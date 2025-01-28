@@ -895,13 +895,6 @@ function Hop()
     Teleport()
 end       
 		
--- Main loop to continuously check the player's level and attack
-spawn(function()
-    while wait() do
-        CheckQuest() -- Call the function to check quests and attack
-    end
-end)
-		
 function UpdateIslandESP() 
     for i,v in pairs(game:GetService("Workspace")["_WorldOrigin"].Locations:GetChildren()) do
         pcall(function()
