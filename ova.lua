@@ -29,8 +29,8 @@ local function createTextLabel(text, size, position, color, fontSize)
     return label
 end
 
--- สร้าง TextLabel สำหรับชื่อ UI (Bang ova | Kaitun)
-local titleLabel = createTextLabel("Bang ova | Kaitun", 
+-- สร้าง TextLabel สำหรับชื่อ UI (BangOva | Kaitun)
+local titleLabel = createTextLabel("BangOva | Kaitun", 
                                   UDim2.new(1, 0, 0, 50), 
                                   UDim2.new(0, 0, 0, 0),  -- ตำแหน่งอยู่บนสุด
                                   Color3.fromRGB(128, 0, 128),  -- สีม่วง
@@ -103,76 +103,6 @@ local function updateTime()
     end
 end
 
--- Configuration Table
-local config = {
-    AutoBuyLegendarySword = true,  -- Enable or disable auto buying legendary swords
-    BuyAllAib = true,               -- Enable or disable buying all abilities
-    AutoNevaSoulGuitar = true,      -- Enable or disable auto Neva Soul Guitar
-    Auto_Dragon_Trident = true,     -- Enable or disable auto Dragon Trident
-    Autowaden = true,                -- Enable or disable auto Waden
-    Autogay = true,                  -- Enable or disable auto Gay
-    Autosaw = true,                  -- Enable or disable auto Saw
-    AutoLongSword = true,            -- Enable or disable auto Long Sword
-    AutoBlackSpikeycoat = true,      -- Enable or disable auto Black Spikey Coat
-    AutoSeaBest = true                -- Enable or disable auto Sea Best
-}
-
--- Function to toggle features
-local function toggleFeature(featureName, state)
-    if config[featureName] ~= nil then
-        config[featureName] = state
-        print(featureName .. " is now set to " .. tostring(state))
-    else
-        print("Feature " .. featureName .. " does not exist.")
-    end
-end
-
--- Example usage
-toggleFeature("AutoBuyLegendarySword", false)  -- Disable auto buying legendary swords
-toggleFeature("BuyAllAib", true)                -- Enable buying all abilities
-toggleFeature("AutoNevaSoulGuitar", false)     -- Disable auto Neva Soul Guitar
-
--- Your existing script logic can now check the config table to determine whether to execute certain features
-if config.AutoBuyLegendarySword then
-    -- Code for auto buying legendary swords
-end
-
-if config.BuyAllAib then
-    -- Code for buying all abilities
-end
-
-if config.AutoNevaSoulGuitar then
-    -- Code for auto Neva Soul Guitar
-end
-
-if config.Auto_Dragon_Trident then
-    -- Code for auto Dragon Trident
-end
-
-if config.Autowaden then
-    -- Code for auto Waden
-end
-
-if config.Autogay then
-    -- Code for auto Gay
-end
-
-if config.Autosaw then
-    -- Code for auto Saw
-end
-
-if config.AutoLongSword then
-    -- Code for auto Long Sword
-end
-
-if config.AutoBlackSpikeycoat then
-    -- Code for auto Black Spikey Coat
-end
-
-if config.AutoSeaBest then
-    -- Code for auto Sea Best
-end
-
 -- ใช้ Heartbeat จาก RunService เพื่ออัปเดตเวลาอย่างต่อเนื่อง
 game:GetService("RunService").Heartbeat:Connect(updateTime)
 
@@ -236,7 +166,6 @@ end
 local function CheckQuest() 
     MyLevel = game:GetService("Players").LocalPlayer.Data.Level.Value
     if World1 then
-if World1 then
         if MyLevel == 1 or MyLevel <= 9 then
             Mon = "Bandit"
             LevelQuest = 1
